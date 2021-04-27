@@ -712,7 +712,8 @@ gst_msdkdec_finish_task (GstMsdkDec * thiz, MsdkDecTask * task)
 
   surface = task->surface;
   if (surface) {
-    gst_msdkdec_frame_corruption_report (thiz, surface->surface->Data.Corrupted);
+    gst_msdkdec_frame_corruption_report (thiz,
+        surface->surface->Data.Corrupted);
     GST_DEBUG_OBJECT (thiz, "Decoded MFX TimeStamp: %" G_GUINT64_FORMAT,
         (guint64) surface->surface->Data.TimeStamp);
     pts = surface->surface->Data.TimeStamp;
@@ -1039,6 +1040,10 @@ gst_msdkdec_error_report (GstMsdkDec * thiz)
     if (thiz->error_report.ErrorTypes & MFX_ERROR_FRAME_GAP)
       GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
           ("[Error] Frame Gap Error detected!"), (NULL));
+
+    if (thiz->error_report.ErrorTypes & MFX_ERROR_UNKNOWN_MARKER)
+      GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
+          ("[Error]  Error unknown marker detected!"), (NULL));
   }
 #endif
 }
