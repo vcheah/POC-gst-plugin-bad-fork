@@ -1041,6 +1041,34 @@ gst_msdkdec_error_report (GstMsdkDec * thiz)
       GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
           ("[Error] Frame Gap Error detected!"), (NULL));
 
+    if (thiz->error_report.ErrorTypes & MFX_ERROR_APP0_MARKER)
+      GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
+          ("[Error]  APP0 unknown marker detected!"), (NULL));
+
+    if (thiz->error_report.ErrorTypes & MFX_ERROR_APP14_MARKER)
+      GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
+          ("[Error]  APP14 unknown marker detected!"), (NULL));
+
+    if (thiz->error_report.ErrorTypes & MFX_ERROR_DQT_MARKER)
+      GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
+          ("[Error]  DQT unknown marker detected!"), (NULL));
+
+    if (thiz->error_report.ErrorTypes & MFX_ERROR_SOF0_MARKER)
+      GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
+          ("[Error]  SOF0 unknown marker detected!"), (NULL));
+
+    if (thiz->error_report.ErrorTypes & MFX_ERROR_DHT_MARKER)
+      GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
+          ("[Error]  DHT unknown marker detected!"), (NULL));
+
+    if (thiz->error_report.ErrorTypes & MFX_ERROR_DRI_MARKER)
+      GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
+          ("[Error]  DRI unknown marker detected!"), (NULL));
+
+    if (thiz->error_report.ErrorTypes & MFX_ERROR_SOS_MARKER)
+      GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
+          ("[Error]  SOS unknown marker detected!"), (NULL));
+
     if (thiz->error_report.ErrorTypes & MFX_ERROR_UNKNOWN_MARKER)
       GST_ELEMENT_WARNING (thiz, STREAM, DECODE,
           ("[Error]  Error unknown marker detected!"), (NULL));
