@@ -190,4 +190,5 @@ gst_msdkmjpegdec_class_init (GstMsdkMJPEGDecClass * klass)
 static void
 gst_msdkmjpegdec_init (GstMsdkMJPEGDec * thiz)
 {
+  gst_video_decoder_set_packetized (GST_VIDEO_DECODER (thiz), FALSE);
 }
